@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PLANTILLA</title>
+    <link rel="stylesheet" href="estilo1.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script> 
+</head>
+
+<body>
+    <div class="contenedor">
+        <div class="encabezado">
+            <div class="a1">
+            </div>
+            <div class="a1"> <a href="plantilla.html"><h2>Consumo de agua para promover estrategias que vinculen el cuidado del medio ambiente con salud personal y colectivo.</h2></a></div>
+            <div class="a2"> <a href="principal1.html">Encuesta</a></div>
+            <div class="a3"> <a href="principal.html">Frases motivacionales</a></div>
+            <div class="a4"> <a href="datos.html">Datos </a></div>
+        </div>
+
+        <div class="cuerpo">
+           
+            <div class="contenedor4">
+
+<canvas id="graficaProductos" width="400" height="200"></canvas>
+
+<script>
+fetch('buscar.php')
+    .then(response => response.json())
+    .then(data => {
+        const nombres = data.map(item => item.Nombre);
+        const cantidades = data.map(item => item.Vasos);
+
+        const ctx = document.getElementById('graficaProductos').getContext('2d');
+        new Chart(ctx, {
+            type: 'bar',  // tipo de gráfico: barra
+            data: {
+                labels: nombres,
+                datasets: [{
+                    label: 'Consumo de Agua',
+                    data: cantidades,
+                    backgroundColor: 'rgba(54, 162, 235, 0.5)'
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    })
+    .catch(error => console.error('Error cargando los datos:', error));
+</script>
+
+
+                    
+            
+            </div>
+        </div>
+        <div class="pie">Datos de contacto </div>
+    </div>
+</body>
+</html>
